@@ -1,2 +1,2 @@
-def test_inventory_page_loaded(page, login):
+def test_login(login, page):
     assert "inventory" in page.url

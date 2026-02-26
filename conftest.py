@@ -11,6 +11,7 @@ def browser():
         yield browser
         print("\n Browser Closing (Session End)")
         browser.close()
+
 @pytest.fixture(scope="function")
 def page(browser):
     print("\n New Context Created")
@@ -43,6 +44,8 @@ def login(page):
     yield
     page.click("#react-burger-menu-btn")
     page.click("#logout_sidebar_link")
+
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
