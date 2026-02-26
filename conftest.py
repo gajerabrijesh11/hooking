@@ -12,6 +12,8 @@ def browser():
         print("\n Browser Closing (Session End)")
         browser.close()
 
+"""Using this pytest fixture function scope, when we run test fron test_function_scope.py, we can see new context will start for every test which is added
+inside test file"""
 @pytest.fixture(scope="function")
 def page(browser):
     print("\n New Context Created")
@@ -44,6 +46,13 @@ def login(page):
     yield
     page.click("#react-burger-menu-btn")
     page.click("#logout_sidebar_link")
+
+@pytest.fixture(scope="class")
+def auth_token():
+    print("\n New Class Created")
+    token = "my_generated_token"
+    yield token
+    print("Cleanup class auth token")
 
 
 
