@@ -54,7 +54,16 @@ def auth_token():
     yield token
     print("Cleanup class auth token")
 
+@pytest.fixture(scope="module")
+def db_connection():
+    print("Connect to DB (module start)")
+    conn = {}
+    yield conn
+    print("Disconnect DB (module end)")
 
+@pytest.fixture(scope="package")
+def login_credentials():
+    return {"user": "user1", "pass": "123"}
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
